@@ -17,7 +17,7 @@ public class NombresUtils {
     }
 
     // Generar lista y retornala
-    static <T> List<T> getList(T... elements) {
+    public static <T> List<T> getList(T... elements) {
         return Arrays.asList(elements);
     }
 
