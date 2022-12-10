@@ -3,7 +3,7 @@ package com.platzi.functional._15_streams_intro;
 import com.platzi.functional._06_reference_operator.NombresUtils;
 
 import java.util.List;
-import java.util.Optional;
+// import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Streams {
@@ -37,6 +37,23 @@ public class Streams {
         Stream<String> empthasisCourses = coursesStream.map(course -> course + "!");
         Stream<String> justJavaCourses = empthasisCourses.filter(course -> course.contains("Java")); // un arreglo filtrado
         justJavaCourses.forEach(System.out::println);
+
+        Stream<String> coursesStream2 = courseList.stream(); // Generar un stream
+        // coursesStream2.map(course -> course + "!!")
+        //         .filter(course -> course.contains("Java"))
+        //         .forEach(System.out::println); // Resp -> Java!!
+
+        // Si te devuelve un String es una operacion INTERMEDIA
+        // Si te devuelve cualquier otro tipo de datoo o no es una operacion FINAL
+
+         addOperator(
+                 coursesStream2.map(course -> course + "!!").filter(course -> course.contains("Java"))
+         ).forEach(System.out::println); // Resp -> Java!!
+    }
+
+    static <T> Stream<T> addOperator(Stream<T> stream) {
+        // peek -> itera sobre los datos sin modificar o alterar el stram
+        return stream.peek(data -> System.out.println("Dato: " + data)); // Dato: Java!!
     }
 
 }
